@@ -46,7 +46,6 @@ jobs:
       - name: Migrate database
         run: npm run migrate up
         env:
-          NODE_ENV: test
           PGHOST: localhost
           PGUSER: postgres
           PGDATABASE: postgres
@@ -56,7 +55,6 @@ jobs:
       - name: Run test
         run: npm run test
         env:
-          NODE_ENV: test
           PGHOST: localhost
           PGUSER: postgres
           PGDATABASE: postgres
