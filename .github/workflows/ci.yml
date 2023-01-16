@@ -51,7 +51,7 @@ jobs:
           PGUSER: postgres
           PGDATABASE: postgres
           PGPASSWORD: postgres
-          PGPORT: postgres
+          PGPORT: 5432
 
       - name: Run test
         run: npm run test
@@ -61,6 +61,6 @@ jobs:
           PGUSER: postgres
           PGDATABASE: postgres
           PGPASSWORD: postgres
-          PGPORT: postgres
+          PGPORT: 5432
           ACCESS_TOKEN_KEY: 123123123
           REFRESH_TOKEN_KEY: 456456456
