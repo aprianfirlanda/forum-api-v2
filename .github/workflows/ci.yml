@@ -14,9 +14,9 @@ jobs:
         image: postgres
 
         env:
-          POSTGRES_PASSWORD: mysecretpassword
-          POSTGRES_USER: postgres
-          POSTGRES_DB: forumapi_test
+          POSTGRES_PASSWORD: ${{ secrets.PGPASSWORD_TEST }}
+          POSTGRES_USER: ${{ secrets.PGUSER_TEST }}
+          POSTGRES_DB: ${{ secrets.PGDATABASE_TEST }}
 
         options: >-
           --health-cmd pg_isready
