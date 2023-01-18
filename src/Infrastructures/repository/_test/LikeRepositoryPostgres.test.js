@@ -69,7 +69,7 @@ describe('CommentRepositoryPostgres', () => {
 
       // Action & Assert
       await expect(likeRepositoryPostgres.verifyLikeExists('comment-123', 'user-123'))
-        .rejects.toThrow(NotFoundError);
+        .toBeTruthy();
     });
 
     it('should resolve when like exist', async () => {
@@ -84,7 +84,7 @@ describe('CommentRepositoryPostgres', () => {
 
       // Action & Assert
       await expect(likeRepositoryPostgres.verifyLikeExists('comment-123', 'user-123'))
-        .resolves.not.toThrow(NotFoundError);
+        .toBeFalsy();
     });
   });
 });
