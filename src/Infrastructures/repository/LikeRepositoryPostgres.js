@@ -28,7 +28,7 @@ class LikeRepositoryPostgres extends LikeRepository {
     await this._pool.query(query);
   }
 
-  async verifyLikeExists(commentId, userId): Promise<boolean> {
+  async verifyLikeExists(commentId, userId) {
     const query = {
       text: 'SELECT * FROM likes WHERE comment_id = $1 AND user_id = $2',
       values: [commentId, userId],
@@ -37,9 +37,8 @@ class LikeRepositoryPostgres extends LikeRepository {
     const result = await this._pool.query(query);
 
     if (!result.rowCount) {
-      return true;
+      throw new NotFoundError('like tidak ditemukan');
     }
-    return false;
   }
 }
 
