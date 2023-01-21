@@ -8,12 +8,15 @@ class LikeUseCase {
   async execute(threadId, commentId, credentialId) {
     await this._threadRepository.verifyThreadExists(threadId);
     await this._commentRepository.verifyCommentExists(commentId);
-    const isLike = await this._likeRepository.verifyLikeExists(commentId, credentialId);
-    if (isLike) {
-      await this._likeRepository.addLike(commentId, credentialId);
-    } else {
-      await this._likeRepository.deleteLike(commentId, credentialId);
-    }
+    await this._likeRepository.verifyLikeExists(commentId, credentialId)
+      .then(
+        async () => {
+          await this._likeRepository.deleteLike(commentId, credentialId);
+        },
+        async () => {
+          await this._likeRepository.addLike(commentId, credentialId);
+        },
+      );
   }
 }
 

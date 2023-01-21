@@ -22,8 +22,6 @@ describe('LikeUseCase', () => {
       .mockRejectedValue(new NotFoundError());
     mockLikeRepository.addLike = jest.fn()
       .mockImplementation(() => Promise.resolve());
-    mockLikeRepository.deleteLike = jest.fn()
-      .mockImplementation(() => Promise.resolve());
 
     /* create use case instance */
     const likeUseCase = new LikeUseCase({
@@ -55,8 +53,6 @@ describe('LikeUseCase', () => {
     mockCommentRepository.verifyCommentExists = jest.fn()
       .mockImplementation(() => Promise.resolve());
     mockLikeRepository.verifyLikeExists = jest.fn()
-      .mockImplementation(() => Promise.resolve());
-    mockLikeRepository.addLike = jest.fn()
       .mockImplementation(() => Promise.resolve());
     mockLikeRepository.deleteLike = jest.fn()
       .mockImplementation(() => Promise.resolve());
