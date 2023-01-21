@@ -7,6 +7,7 @@ const AddedComment = require('../../../Domains/comments/entities/AddedComment');
 const NotFoundError = require('../../../Commons/exceptions/NotFoundError');
 const AuthorizationError = require('../../../Commons/exceptions/AuthorizationError');
 const Comments = require('../../../Domains/comments/entities/Comments');
+const LikesTableTestHelper = require('../../../../tests/LikesTableTestHelper');
 
 describe('CommentRepositoryPostgres', () => {
   afterEach(async () => {
@@ -145,6 +146,7 @@ describe('CommentRepositoryPostgres', () => {
       await ThreadsTableTestHelper.addThread({});
       await CommentsTableTestHelper.addComment({ time: new Date('2022-12-27') });
       await CommentsTableTestHelper.addComment({ id: 'comment-456', isDelete: true, time: new Date('2022-12-28') });
+      await LikesTableTestHelper.addLike({});
       const commentRepositoryPostgres = new CommentRepositoryPostgres(
         pool, {},
       );
@@ -160,6 +162,7 @@ describe('CommentRepositoryPostgres', () => {
         date: new Date('2022-12-27'),
         content: 'Isi komen',
         replies: [],
+        likecount: '1',
       }));
       expect(comments[1]).toEqual(new Comments({
         id: 'comment-456',
@@ -167,6 +170,7 @@ describe('CommentRepositoryPostgres', () => {
         date: new Date('2022-12-28'),
         content: '**komentar telah dihapus**',
         replies: [],
+        likecount: '0',
       }));
     });
   });

@@ -7,6 +7,7 @@ describe('Comments entities', () => {
       username: 'dicoding',
       date: new Date(),
       content: 'Isi komen',
+      likecount: 1,
     };
 
     // Action & Assert
@@ -20,6 +21,7 @@ describe('Comments entities', () => {
       username: 'dicoding',
       date: new Date(),
       content: 123,
+      likecount: 1,
     };
 
     // Action & Assert
@@ -33,6 +35,7 @@ describe('Comments entities', () => {
       username: 'dicoding',
       date: new Date(),
       content: 'Isi komen',
+      likecount: 1,
     };
 
     // Action
@@ -45,5 +48,6 @@ describe('Comments entities', () => {
     expect(comments.date).toEqual(payload.date);
     expect(comments.content).toEqual(payload.content);
     expect(comments.replies).toEqual([]);
+    expect(comments.likeCount).toEqual(payload.likecount);
   });
 });
