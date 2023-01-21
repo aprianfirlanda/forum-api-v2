@@ -386,6 +386,7 @@ describe('/threads endpoint', () => {
       await CommentsTableTestHelper.addComment({ id: 'comment-456', isDelete: true, time: new Date('2022-12-28') });
       await RepliesTableTestHelper.addReply({ time: new Date('2022-12-29') });
       await RepliesTableTestHelper.addReply({ id: 'reply-456', isDelete: true, time: new Date('2022-12-30') });
+      await LikesTableTestHelper.addLike({});
       // eslint-disable-next-line no-undef
       const server = await createServer(container);
 
@@ -411,6 +412,7 @@ describe('/threads endpoint', () => {
             username: 'dicoding',
             date: new Date('2022-12-27').toISOString(),
             content: 'Isi komen',
+            likeCount: 1,
             replies: [
               {
                 id: 'reply-123',
@@ -431,6 +433,7 @@ describe('/threads endpoint', () => {
             username: 'dicoding',
             date: new Date('2022-12-28').toISOString(),
             content: '**komentar telah dihapus**',
+            likeCount: 0,
             replies: [],
           },
         ],
